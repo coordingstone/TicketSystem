@@ -1,9 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joelsvensson
- * Date: 2018-10-20
- * Time: 13:31
- */
 
-echo 'testing index';
+
+include_once(dirname(__FILE__) . '/../../../includes/init_frontend_tickets.inc.php');
+$smarty->display('frontend/tickets/tickets.tpl');

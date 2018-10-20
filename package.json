@@ -1,0 +1,38 @@
+{
+  "name": "TicketSystem",
+  "version": "1.0.0",
+  "description": "TicketSystem Frontend",
+  "main": "main.js",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "webpack": "^4.21.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.2.1",
+    "backbone": "^1.3.3",
+    "css-loader": "^1.0.0",
+    "exports-loader": "^0.7.0",
+    "expose-loader": "^0.7.5",
+    "node-sass": "^4.9.4",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coordingstone/TicketSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coordingstone/TicketSystem/issues"
+  },
+  "homepage": "https://github.com/coordingstone/TicketSystem#readme"
+}
