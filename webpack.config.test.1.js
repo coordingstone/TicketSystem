@@ -1,35 +1,35 @@
+'use strict';
 const path = require('path');
-const webpack = require('webpack');
 
-module.exports = {
+const webpack = require('webpack'),
+
+    glob = require('glob');
+
+let config = {
 
     entry: {
-        common: "./client/js/common.js",
-        tickets: "./client/js/tickets.js",
-        vendor: ['jquery', 'underscore']
-    },
 
-    output: {
-        path: path.join(__dirname, "www/frontend/tickets/js"),
-        filename: "[name].js"
-    },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    enforce: true,
-                    chunks: 'all'
-                }
-            }
-        }
-    },
+        'vendor': [
+
+            'jquery',
+
+            'bootstrap',
+
+            'backbone'
 
 
+        ],
+
+
+
+        // Auto-detect all pages in directory.
+
+        'tickets': glob.sync('./client/js/tickets.js'),
+
+    },
 
     module: {
+
         rules: [
             {
                 test: /\.(scss)$/,
@@ -60,11 +60,37 @@ module.exports = {
                 ]
             },
         ],
+
     },
-    plugins: [ new webpack.ProvidePlugin({
+
+    output: {
+
+        path: path.join(__dirname, "www/frontend/tickets/js"),
+
+        filename: 'bundle--[name].js'
+
+    },
+
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    enforce: true,
+                    chunks: 'all'
+                }
+            }
+        }
+    },
+
+    plugins : [ new webpack.ProvidePlugin({
         $ : "jquery",
-        jQuery : "jquery",
         Backbone : "backbone",
         _ : "underscore"
     }) ]
+
 };
+
+module.exports = config;

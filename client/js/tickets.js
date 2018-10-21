@@ -1,12 +1,15 @@
+var AlertView = require('./views/AlertView'),
+    TicketsView = require('./views/TicketsView');
+
 
 Backbone.$ = $;
 $(document).ready(function () {
     var TicketsViewRouter = Backbone.Router.extend({
-        allTicketsView : undefined,
-        newTicketView : undefined,
+        ticketsView : new TicketsView(),
+        newTicketView : 'undefined',
         routes: {
             "new-ticket":   'newTicket',
-            "list-tickets": 'listTickets',
+            "tickets": 'listTickets',
             '*path':        'defaultRoute'
         },
 
@@ -18,6 +21,15 @@ $(document).ready(function () {
         listTickets: function () {
             $('#sidebar-menu').find('li').removeClass('active');
             $('#list-tickets-list-item').addClass('active');
+
+            if (typeof this.ticketsView == null || typeof this.ticketsView === 'undefined') {
+                console.log(this.ticketsView);
+                this.ticketsView = new TicketsView();
+                console.log(this.ticketsView);
+            }
+            this.ticketsView.render();
+            this.ticketsView.$el.show();
+
         },
 
         defaultRoute: function () {

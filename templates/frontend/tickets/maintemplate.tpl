@@ -26,6 +26,15 @@
         {include file="./footer.tpl"}
     {/block}
 </body>
+<script type="text/template" id="alert-message-template">
+    <div id="alert-message">
+        <div style="padding: 5px;">
+            <div class="alert alert-<%=type%> alert-dismissible" role="alert">
+                <strong><%= shortDesc %></strong>&nbsp;<%=text%>
+            </div>
+        </div>
+    </div>
+</script>
       {block name=afterBodyBlock}
 
       {/block}
