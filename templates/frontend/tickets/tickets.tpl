@@ -12,8 +12,9 @@
         </div>
         <div id="app-content" class="col-lg-10 col-md-10 col-sm-10">
             <div id="new-ticket" style="display: none;">
-                <h1 style="padding: 0; margin: 0;">Open new ticket</h1>
+                <div id="new-ticket-table">
 
+                </div>
             </div>
             <div id="tickets" style="display: none;">
                 <h1 style="padding: 0; margin: 0;">List all tickets</h1>
@@ -52,17 +53,62 @@
     <script type="text/template" id="ticket-table-row">
         <tr class="ticket-row">
             <td><%= issuer %></td>
-            <td><%= title %></td>
+            <td><%= issuer %></td>
             <td><%= createtime %></td>
-            <td><%= closetime %></td>
+            <td><%= deletetime %></td>
             <td><%= closer %></td>
             <td><a href="#" class="edit-ticket">Edit</a></td>
         </tr>
     </script>
 
+    <script type="text/template" id="new-ticket-table-editor-row-template">
+        <h1>Add new ticket</h1>
+        <table class="table">
+            <tr class="new-ticket-table-row">
+                <td colspan="6">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Issuer</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="issuerName" class="form-control" value="<%= ticket.issuer %>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Title</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="titleName" class="form-control" value="<%= ticket.closer %>">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Issue</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="issueName" class="form-control" value="<%= ticket.closer %>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-4 text-right">
+                            <a href="#new-ticket" class="btn-save pull-right">Save</a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </script>
+
     <script type="text/template" id="ticket-table-editor-row">
-        <tr class="ticket-table-editor-row">
-            <td colspan="5">
+        <tr class="ticket-table-row">
+            <td colspan="6">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -78,7 +124,7 @@
                         <label>Title</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="titleName" class="form-control" value="<%= ticket.name %>">
+                        <input type="text" name="titleName" class="form-control" value="<%= ticket.closer %>">
                     </div>
                 </div>
 
@@ -88,17 +134,17 @@
                         <label>Issue</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issueName" class="form-control" value="<%= ticket.issue %>">
+                        <input type="text" name="issueName" class="form-control" value="<%= ticket.closer %>">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-2 text-left">
-                        <a href="#" class="button-delete">Delete</a>
+                        <a href="#" class="btn-cancel">Cancel</a>
                     </div>
                     <div class="col-md-6 col-md-offset-4 text-right">
-                        <a href="#" class="button-save pull-right">Save</a>
-                        <a href="#" class="button-cancel pull-right" style="margin-right: 15px;">Delete</a>
+                        <a href="#" class="btn-save pull-right">Save</a>
+                        <a href="#" class="btn-delete pull-right" style="margin-right: 15px;">Delete</a>
                     </div>
                 </div>
 

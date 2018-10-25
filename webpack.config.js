@@ -4,30 +4,14 @@ const webpack = require('webpack');
 module.exports = {
 
     entry: {
-        common: "./client/js/common.js",
-        tickets: "./client/js/tickets.js",
-        vendor: ['jquery', 'underscore']
+        common: "./client/tickets/js/common.js",
+        tickets: "./client/tickets/js/tickets.js",
     },
 
     output: {
         path: path.join(__dirname, "www/frontend/tickets/js"),
         filename: "[name].js"
     },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    enforce: true,
-                    chunks: 'all'
-                }
-            }
-        }
-    },
-
-
 
     module: {
         rules: [
@@ -65,6 +49,7 @@ module.exports = {
         $ : "jquery",
         jQuery : "jquery",
         Backbone : "backbone",
-        _ : "underscore"
+        _ : "underscore",
+        Promise: "bluebird"
     }) ]
 };

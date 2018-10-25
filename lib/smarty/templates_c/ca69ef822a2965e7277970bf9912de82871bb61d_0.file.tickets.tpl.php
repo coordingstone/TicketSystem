@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-10-21 20:33:05
+/* Smarty version 3.1.33, created on 2018-10-25 11:57:50
   from '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bcce281d62bc1_39527063',
+  'unifunc' => 'content_5bd1afbe4b3ca5_41829707',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ca69ef822a2965e7277970bf9912de82871bb61d' => 
     array (
       0 => '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl',
-      1 => 1540153954,
+      1 => 1540468666,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bcce281d62bc1_39527063 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bd1afbe4b3ca5_41829707 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11600902155bcce281d50519_23607128', 'mainContent');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10161556495bd1afbe4a0540_40791659', 'mainContent');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11890128075bcce281d537a8_68191512', 'afterBodyBlock');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16916879495bd1afbe4a4094_10965512', 'afterBodyBlock');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "frontend/tickets/maintemplate.tpl");
 }
 /* {block 'mainContent'} */
-class Block_11600902155bcce281d50519_23607128 extends Smarty_Internal_Block
+class Block_10161556495bd1afbe4a0540_40791659 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'mainContent' => 
   array (
-    0 => 'Block_11600902155bcce281d50519_23607128',
+    0 => 'Block_10161556495bd1afbe4a0540_40791659',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -58,8 +58,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         </div>
         <div id="app-content" class="col-lg-10 col-md-10 col-sm-10">
             <div id="new-ticket" style="display: none;">
-                <h1 style="padding: 0; margin: 0;">Open new ticket</h1>
+                <div id="new-ticket-table">
 
+                </div>
             </div>
             <div id="tickets" style="display: none;">
                 <h1 style="padding: 0; margin: 0;">List all tickets</h1>
@@ -90,12 +91,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'mainContent'} */
 /* {block 'afterBodyBlock'} */
-class Block_11890128075bcce281d537a8_68191512 extends Smarty_Internal_Block
+class Block_16916879495bd1afbe4a4094_10965512 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'afterBodyBlock' => 
   array (
-    0 => 'Block_11890128075bcce281d537a8_68191512',
+    0 => 'Block_16916879495bd1afbe4a4094_10965512',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -114,9 +115,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
  type="text/template" id="ticket-table-row">
         <tr class="ticket-row">
             <td><?php echo '<%';?>= issuer <?php echo '%>';?></td>
-            <td><?php echo '<%';?>= title <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= issuer <?php echo '%>';?></td>
             <td><?php echo '<%';?>= createtime <?php echo '%>';?></td>
-            <td><?php echo '<%';?>= closetime <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= deletetime <?php echo '%>';?></td>
             <td><?php echo '<%';?>= closer <?php echo '%>';?></td>
             <td><a href="#" class="edit-ticket">Edit</a></td>
         </tr>
@@ -124,9 +125,56 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 >
 
     <?php echo '<script'; ?>
+ type="text/template" id="new-ticket-table-editor-row-template">
+        <h1>Add new ticket</h1>
+        <table class="table">
+            <tr class="new-ticket-table-row">
+                <td colspan="6">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Issuer</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="issuerName" class="form-control" value="<?php echo '<%';?>= ticket.issuer <?php echo '%>';?>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Title</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="titleName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Issue</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="issueName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-4 text-right">
+                            <a href="#new-ticket" class="btn-save pull-right">Save</a>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    <?php echo '</script'; ?>
+>
+
+    <?php echo '<script'; ?>
  type="text/template" id="ticket-table-editor-row">
-        <tr class="ticket-table-editor-row">
-            <td colspan="5">
+        <tr class="ticket-table-row">
+            <td colspan="6">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -142,7 +190,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <label>Title</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="titleName" class="form-control" value="<?php echo '<%';?>= ticket.name <?php echo '%>';?>">
+                        <input type="text" name="titleName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
                     </div>
                 </div>
 
@@ -152,17 +200,17 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <label>Issue</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issueName" class="form-control" value="<?php echo '<%';?>= ticket.issue <?php echo '%>';?>">
+                        <input type="text" name="issueName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-2 text-left">
-                        <a href="#" class="button-delete">Delete</a>
+                        <a href="#" class="btn-cancel">Cancel</a>
                     </div>
                     <div class="col-md-6 col-md-offset-4 text-right">
-                        <a href="#" class="button-save pull-right">Save</a>
-                        <a href="#" class="button-cancel pull-right" style="margin-right: 15px;">Delete</a>
+                        <a href="#" class="btn-save pull-right">Save</a>
+                        <a href="#" class="btn-delete pull-right" style="margin-right: 15px;">Delete</a>
                     </div>
                 </div>
 

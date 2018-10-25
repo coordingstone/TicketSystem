@@ -1,5 +1,12 @@
 {
     "require": {
-        "doctrine/migrations": "^1.5"
+        "doctrine/migrations": "^1.5",
+        "peej/tonic": "3.*"
+    },
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
     }
+
 }

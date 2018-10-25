@@ -7,7 +7,6 @@
         {include file="./header.tpl"}
     {/block}
 
-
 </head>
 <body>
     <div id="alert-message" style="display: none;">
