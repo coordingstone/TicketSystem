@@ -24,7 +24,6 @@ abstract class DbObject
     public static function insertByParams($query, $typeString = '', $values = array(), $returnId = true) {
         $db = Db::getInstance();
         $stmt = $db->prepare($query);
-        error_log($query);
         if ($typeString != '') {
             array_unshift($values, $typeString);
             $callParams = array();

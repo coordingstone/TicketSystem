@@ -84,7 +84,6 @@ class Ticket extends DbObject
         $query = "INSERT INTO ticket(opener_name, issue_description, closer_name, status, createtime) " .
                  "VALUES (?, ?, ?, ?, NOW())";
         $typeString = 'ssss';
-        error_log($this->openerName);
         $values = array(
             $this->openerName,
             $this->issueDescription,

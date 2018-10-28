@@ -20,7 +20,7 @@ class TicketResource extends BaseResource
     /**
      * @param $ticketId
      * @return \Tonic\Response
-     * @throws \Tonic\Exception
+     * @throws \Exception
      *
      * @method PUT
      * @provides application/json
@@ -31,8 +31,6 @@ class TicketResource extends BaseResource
         $pObj = Model\Request\TicketsRequest::createInstance($this);
 
         $ticket->openerName = $pObj->openerName;
-        error_log($ticket->openerName);
-        error_log($pObj->openerName);
         $ticket->issueDescription = $pObj->issueDescription;
         $ticket->closerName = $pObj->closerName;
         $ticket->status = $pObj->status;
@@ -43,14 +41,14 @@ class TicketResource extends BaseResource
             $db->startTransaction();
 
             if (!$ticket->update()) {
-                throw new Exception('Could not update ticket, Please try again', TonicResponse::INTERNALSERVERERROR);
+                throw new TonicException('Could not update ticket, Please try again', TonicResponse::INTERNALSERVERERROR);
             }
 
             $db->commitTransaction();
-        } catch (\Exception $exception) {
+        } catch (\TonicException $exception) {
             try {
                 $db->rollbackTransaction();
-            } catch (\Exception $e) {
+            } catch (\TonicException $e) {
                 error_log('Could not update ticket');
             }
 

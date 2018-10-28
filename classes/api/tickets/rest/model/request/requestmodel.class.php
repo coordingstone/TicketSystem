@@ -29,17 +29,14 @@ abstract class RequestModel
      */
     public static function createInstanceWithData(\stdClass $requestData) {
         $calledClass = get_called_class();
-        error_log($calledClass);
         $ref = new \ReflectionClass($calledClass);
         $properties = $ref->getProperties();
         $requestObj = new $calledClass();
 
         foreach ($properties as $property) {
             $propertyName = $property->getName();
-            error_log($propertyName);
 
             if (isset($requestData->$propertyName)) {
-                error_log("{$propertyName} is set");
                 $data = $requestData->$propertyName;
                 $type = static::getTypeAnnotation($property);
                 if (!empty($type)) {

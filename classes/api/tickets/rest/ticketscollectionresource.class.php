@@ -41,15 +41,7 @@ class TicketsCollectionResource extends BaseResource
 
         $ticket = new \Ticket();
 
-        $ticket->openerName = 'Joels';
-        error_log($ticket->openerName);
-
-        error_log('POST TICKET');
-
         $pObj = Model\Request\TicketsRequest::createInstance($this);
-
-        error_log($pObj->openerName);
-
 
         $ticket->openerName = $pObj->openerName;
         $ticket->issueDescription = $pObj->issueDescription;
@@ -61,15 +53,8 @@ class TicketsCollectionResource extends BaseResource
 
         try {
             $db->startTransaction();
-            error_log('Start TRansaction');
-
-
-            error_log($ticket->openerName);
 
             $ticket->ticketId = $ticket->insert();
-
-            error_log('Inserted ticket');
-
 
             if (!$ticket->ticketId) {
                 throw new TonicException('Could not create ticket', TonicResponse::INTERNALSERVERERROR);
