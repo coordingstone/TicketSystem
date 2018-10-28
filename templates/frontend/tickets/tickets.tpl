@@ -22,11 +22,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Issuer</th>
-                                <th>Title</th>
-                                <th>Create time</th>
-                                <th>Close time</th>
+                                <th>Your Name</th>
+                                <th>Issue</th>
                                 <th>Closed by</th>
+                                <th>Status</th>
+                                <th>Created</th>
                                 <th> </th>
                                 </tr>
                         </thead>
@@ -52,11 +52,11 @@
 
     <script type="text/template" id="ticket-table-row">
         <tr class="ticket-row">
-            <td><%= issuer %></td>
-            <td><%= issuer %></td>
+            <td><%= openerName %></td>
+            <td><%= issueDescription %></td>
+            <td><%= closerName %></td>
+            <td><%= status %></td>
             <td><%= createtime %></td>
-            <td><%= deletetime %></td>
-            <td><%= closer %></td>
             <td><a href="#" class="edit-ticket">Edit</a></td>
         </tr>
     </script>
@@ -69,29 +69,38 @@
 
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Issuer</label>
+                            <label>Your Name</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="issuerName" class="form-control" value="<%= ticket.issuer %>">
+                            <input type="text" name="openerNameInput" class="form-control" value="<%= ticket.openerName %>">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Title</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="titleName" class="form-control" value="<%= ticket.closer %>">
-                        </div>
-                    </div>
-
 
                     <div class="row">
                         <div class="col-md-2">
                             <label>Issue</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="issueName" class="form-control" value="<%= ticket.closer %>">
+                            <input type="text" name="issueDescriptionInput" class="form-control" value="<%= ticket.issueDescription %>">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Closed by</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="closerNameInput" class="form-control" value="<%= ticket.closerName %>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Status</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="statusInput" class="form-control" value="<%= ticket.status %>">
                         </div>
                     </div>
 
@@ -112,29 +121,38 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label>Issuer</label>
+                        <label>Your Name</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issuerName" class="form-control" value="<%= ticket.issuer %>">
+                        <input type="text" name="openerNameInput" class="form-control" value="<%= ticket.openerName %>">
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Title</label>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" name="titleName" class="form-control" value="<%= ticket.closer %>">
-                    </div>
-                </div>
-
 
                 <div class="row">
                     <div class="col-md-2">
                         <label>Issue</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issueName" class="form-control" value="<%= ticket.closer %>">
+                        <input type="text" name="issueDescriptionInput" class="form-control" value="<%= ticket.issueDescription %>">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Closed by</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="closerNameInput" class="form-control" value="<%= ticket.closerName %>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Status</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="statusInput" class="form-control" value="<%= ticket.status %>">
                     </div>
                 </div>
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joelsvensson
- * Date: 2018-10-22
- * Time: 18:20
- */
 
 class Db extends MySQLi
 {
@@ -14,10 +8,11 @@ class Db extends MySQLi
     {
         $port = 3306;
 
-        parent::__construct('127.0.0.1', 'root', 'root', 'tickets_system_dev', $port);
+        parent::__construct('127.0.0.1', 'root', 'root', 'ticketsystem', $port);
 
         if ($this->connect_error) {
             throw new DbException("Connect error ({$this->connect_error}) {$this->connect_error}");
+
         }
 
         $this->set_charset('utf8');
@@ -31,7 +26,28 @@ class Db extends MySQLi
         return self::$_instance;
     }
 
-    public function query($query)
+    /**
+     * @param string $query
+     * @return DbStatement
+     * @throws DbException
+     */
+    public function prepare($query)
+    {
+        $stmt = new DbStatement($this, '');
+        $result = $stmt->prepare($query);
+        if (!$result) {
+            throw new DbException("Query error({$stmt->errno}) {$stmt->error}");
+        }
+        return $stmt;
+    }
+
+    /**
+     * @param string $query
+     * @param $resultMode
+     * @return bool|mysqli_result
+     * @throws DbException
+     */
+    public function query($query, $resultMode = null)
     {
         $result = parent::query($query);
         if (mysqli_error($this)) {

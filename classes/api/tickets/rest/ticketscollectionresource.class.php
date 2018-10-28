@@ -21,27 +21,11 @@ class TicketsCollectionResource extends BaseResource
      */
     public function get() {
 
-
-
-        $tickets = array();
-        $ticket = new \Ticket();
-        $ticket->ticketId = 1;
-        $ticket->issuer = 'Joel Svensson';
-        $ticket->closer = 'Malin Lind';
-
-        $ticket1 = new \Ticket();
-        $ticket1->ticketId = 2;
-        $ticket1->issuer = 'ML';
-        $ticket1->closer = 'JS';
-
-        array_push($tickets, $ticket);
-        array_push($tickets, $ticket1);
-        error_log(count($tickets));
+        $tickets = \Ticket::listAllTickets();
 
         $models = array();
         foreach ($tickets as $ticket) {
             $models[] = Model\Response\TicketModel::createModel($ticket);
-            error_log($ticket->issuer);
         }
 
         return $this->generateResponse($models);
@@ -49,11 +33,60 @@ class TicketsCollectionResource extends BaseResource
 
     /**
      * @return TonicResponse
-     * @throws \Tonic\Exception
+     * @throws \Exception
      * @method POST
      * @provides application/json
      */
     public function post() {
-        return $this->generateEmptyResponse();
+
+        $ticket = new \Ticket();
+
+        $ticket->openerName = 'Joels';
+        error_log($ticket->openerName);
+
+        error_log('POST TICKET');
+
+        $pObj = Model\Request\TicketsRequest::createInstance($this);
+
+        error_log($pObj->openerName);
+
+
+        $ticket->openerName = $pObj->openerName;
+        $ticket->issueDescription = $pObj->issueDescription;
+        $ticket->closerName = $pObj->closerName;
+        $ticket->status = $pObj->status;
+
+        $db = \Db::getInstance();
+
+
+        try {
+            $db->startTransaction();
+            error_log('Start TRansaction');
+
+
+            error_log($ticket->openerName);
+
+            $ticket->ticketId = $ticket->insert();
+
+            error_log('Inserted ticket');
+
+
+            if (!$ticket->ticketId) {
+                throw new TonicException('Could not create ticket', TonicResponse::INTERNALSERVERERROR);
+            }
+            $db->commitTransaction();
+        } catch (\Exception $exception) {
+            try {
+                $db->rollbackTransaction();
+            } catch (\Exception $e) {
+                error_log('Could not rollback transaction');
+            }
+            throw $exception;
+        }
+
+        $ticket = \Ticket::load($ticket->ticketId);
+        $model = Model\Response\TicketModel::createModel($ticket);
+
+        return $this->generateResponse($model);
     }
 }

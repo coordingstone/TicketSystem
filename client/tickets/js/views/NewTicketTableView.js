@@ -11,7 +11,6 @@ export default BaseView.extend({
     ticketsCollection: undefined,
 
     initialize: function () {
-        console.log('init');
 
         this.ticketsCollection = new TicketsCollection();
         this.fetchTickets();
@@ -29,7 +28,18 @@ export default BaseView.extend({
         e.preventDefault();
         e.stopPropagation();
         let self = this;
-        this.ticketModel.set('issuer', 'Karl');
+        let openerName = self.$el.find('input[name="openerNameInput"]').val();
+        let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
+        let closerName = self.$el.find('input[name="closerNameInput"]').val();
+        let status = self.$el.find('input[name="statusInput"]').val();
+
+        this.ticketModel.set('openerName', openerName);
+        this.ticketModel.set('issueDescription', issueDescription);
+        this.ticketModel.set('closerName', closerName);
+        this.ticketModel.set('status', 'OPEN');
+
+        console.log(this.ticketModel);
+
         this.ticketsCollection.add(this.ticketModel);
         this.ticketModel.save(null, {
             success: function () {

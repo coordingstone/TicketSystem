@@ -16,7 +16,7 @@ class BaseResource extends Resource {
     }
 
     /**
-     * @param array|$result
+     * @param array|object $result
      * @return Response
      */
     protected function generateResponse($result) {

@@ -58,8 +58,17 @@ export default BaseView.extend({
     saveChanges: function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var self = this;
-        this.model.set('closer', 'Bug#1');
+        let self = this;
+        let openerName = self.$el.find('input[name="openerNameInput"]').val();
+        let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
+        let closerName = self.$el.find('input[name="closerNameInput"]').val();
+        let status = self.$el.find('input[name="statusInput"]').val();
+
+        this.model.set('openerName', openerName);
+        this.model.set('issueDescription', issueDescription);
+        this.model.set('closerName', closerName);
+        this.model.set('status', 'OPEN');
+
         this.model.save(null, {
             success: function () {
                 var alertView = new AlertView();

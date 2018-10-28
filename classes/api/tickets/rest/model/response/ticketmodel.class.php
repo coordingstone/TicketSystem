@@ -8,22 +8,24 @@ class TicketModel extends ResponseModel
      * @var int
      */
     public $ticketId;
-    public $issuer;
-    public $closer;
+    public $openerName;
+    public $issueDescription;
+    public $closerName;
+    public $status;
     public $createtime;
-    public $deletetime;
 
     /**
-     * @param $pObj
+     * @param \Ticket $pObj
      * @return TicketModel
      */
     public static function createModel($pObj) {
         $model = new self();
         $model->ticketId = $pObj->ticketId;
-        $model->issuer = $pObj->issuer;
-        $model->closer = $pObj->closer;
-        $model->createtime = date('today');
-        $model->deletetime = date('-30 Days');
+        $model->openerName = $pObj->openerName;
+        $model->issueDescription = $pObj->issueDescription;
+        $model->closerName = $pObj->closerName;
+        $model->status = $pObj->status;
+        $model->createtime = $pObj->createtime;
         return $model;
     }
 

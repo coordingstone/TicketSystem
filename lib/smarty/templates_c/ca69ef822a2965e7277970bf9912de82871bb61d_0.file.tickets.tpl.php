@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-10-25 11:57:50
+/* Smarty version 3.1.33, created on 2018-10-28 10:45:47
   from '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bd1afbe4b3ca5_41829707',
+  'unifunc' => 'content_5bd5935b792666_95273223',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ca69ef822a2965e7277970bf9912de82871bb61d' => 
     array (
       0 => '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl',
-      1 => 1540468666,
+      1 => 1540723529,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bd1afbe4b3ca5_41829707 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bd5935b792666_95273223 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10161556495bd1afbe4a0540_40791659', 'mainContent');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7176631915bd5935b77ac42_49448274', 'mainContent');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16916879495bd1afbe4a4094_10965512', 'afterBodyBlock');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6262238615bd5935b77e450_28675132', 'afterBodyBlock');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "frontend/tickets/maintemplate.tpl");
 }
 /* {block 'mainContent'} */
-class Block_10161556495bd1afbe4a0540_40791659 extends Smarty_Internal_Block
+class Block_7176631915bd5935b77ac42_49448274 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'mainContent' => 
   array (
-    0 => 'Block_10161556495bd1afbe4a0540_40791659',
+    0 => 'Block_7176631915bd5935b77ac42_49448274',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -68,11 +68,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Issuer</th>
-                                <th>Title</th>
-                                <th>Create time</th>
-                                <th>Close time</th>
+                                <th>Your Name</th>
+                                <th>Issue</th>
                                 <th>Closed by</th>
+                                <th>Status</th>
+                                <th>Created</th>
                                 <th> </th>
                                 </tr>
                         </thead>
@@ -91,12 +91,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'mainContent'} */
 /* {block 'afterBodyBlock'} */
-class Block_16916879495bd1afbe4a4094_10965512 extends Smarty_Internal_Block
+class Block_6262238615bd5935b77e450_28675132 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'afterBodyBlock' => 
   array (
-    0 => 'Block_16916879495bd1afbe4a4094_10965512',
+    0 => 'Block_6262238615bd5935b77e450_28675132',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -114,11 +114,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <?php echo '<script'; ?>
  type="text/template" id="ticket-table-row">
         <tr class="ticket-row">
-            <td><?php echo '<%';?>= issuer <?php echo '%>';?></td>
-            <td><?php echo '<%';?>= issuer <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= openerName <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= issueDescription <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= closerName <?php echo '%>';?></td>
+            <td><?php echo '<%';?>= status <?php echo '%>';?></td>
             <td><?php echo '<%';?>= createtime <?php echo '%>';?></td>
-            <td><?php echo '<%';?>= deletetime <?php echo '%>';?></td>
-            <td><?php echo '<%';?>= closer <?php echo '%>';?></td>
             <td><a href="#" class="edit-ticket">Edit</a></td>
         </tr>
     <?php echo '</script'; ?>
@@ -133,29 +133,38 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Issuer</label>
+                            <label>Your Name</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="issuerName" class="form-control" value="<?php echo '<%';?>= ticket.issuer <?php echo '%>';?>">
+                            <input type="text" name="openerNameInput" class="form-control" value="<?php echo '<%';?>= ticket.openerName <?php echo '%>';?>">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Title</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="titleName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
-                        </div>
-                    </div>
-
 
                     <div class="row">
                         <div class="col-md-2">
                             <label>Issue</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="issueName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
+                            <input type="text" name="issueDescriptionInput" class="form-control" value="<?php echo '<%';?>= ticket.issueDescription <?php echo '%>';?>">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Closed by</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="closerNameInput" class="form-control" value="<?php echo '<%';?>= ticket.closerName <?php echo '%>';?>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Status</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="statusInput" class="form-control" value="<?php echo '<%';?>= ticket.status <?php echo '%>';?>">
                         </div>
                     </div>
 
@@ -178,29 +187,38 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label>Issuer</label>
+                        <label>Your Name</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issuerName" class="form-control" value="<?php echo '<%';?>= ticket.issuer <?php echo '%>';?>">
+                        <input type="text" name="openerNameInput" class="form-control" value="<?php echo '<%';?>= ticket.openerName <?php echo '%>';?>">
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Title</label>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" name="titleName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
-                    </div>
-                </div>
-
 
                 <div class="row">
                     <div class="col-md-2">
                         <label>Issue</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="issueName" class="form-control" value="<?php echo '<%';?>= ticket.closer <?php echo '%>';?>">
+                        <input type="text" name="issueDescriptionInput" class="form-control" value="<?php echo '<%';?>= ticket.issueDescription <?php echo '%>';?>">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Closed by</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="closerNameInput" class="form-control" value="<?php echo '<%';?>= ticket.closerName <?php echo '%>';?>">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Status</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="statusInput" class="form-control" value="<?php echo '<%';?>= ticket.status <?php echo '%>';?>">
                     </div>
                 </div>
 

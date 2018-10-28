@@ -3,7 +3,7 @@
 namespace Api\Tickets\Rest\Model\Request;
 
 
-class TicketsRequest
+class TicketsRequest extends RequestModel
 {
 
     /**
@@ -14,21 +14,21 @@ class TicketsRequest
     /**
      * @var string
      */
-    public $title;
+    public $openerName;
 
     /**
      * @var string
      */
-    public $closer;
+    public $issueDescription;
 
     /**
      * @var string
      */
-    public $createtime;
+    public $closerName;
 
     /**
-     * @var string
+     * @var string ENUM(OPEN, CLOSE)
      */
-    public $closetime;
+    public $status;
 
 }
