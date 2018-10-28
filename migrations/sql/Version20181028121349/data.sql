@@ -1,0 +1,1 @@
+INSERT INTO `ticket` (`ticket_id`, `opener_name`, `issue_description`, `closer_name`, `status`, `createtime`, `deletetime`) VALUES (1, 'Joel', 'Cant add from migrations', NULL, 'CLOSED', NOW(), NULL);
