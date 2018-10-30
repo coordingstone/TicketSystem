@@ -38,7 +38,6 @@ export default BaseView.extend({
         this.ticketModel.set('closerName', closerName);
         this.ticketModel.set('status', 'OPEN');
 
-        console.log(this.ticketModel);
 
         this.ticketsCollection.add(this.ticketModel);
         this.ticketModel.save(null, {

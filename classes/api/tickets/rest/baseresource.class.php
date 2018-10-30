@@ -35,5 +35,15 @@ class BaseResource extends Resource {
         return $response;
     }
 
+    protected function generateCustomResponse($contentType, $body, $fileName) {
+        $response = new Response();
+        $response->code = Response::OK;
+        $response->contentType = $contentType;
+        $response->body = $body;
+        $response->contentDisposition = 'attachment; filename=' . $fileName;
+        $response->contentMD5 = md5($response->body);
+        return $response;
+    }
+
 
 }

@@ -29,6 +29,7 @@ abstract class DbObject
             $callParams = array();
             foreach ($values as $key => $val) {
                 $callParams[] = &$values[$key];
+                error_log($values[$key]);
             }
             $ref = new ReflectionClass('mysqli_stmt');
             $method = $ref->getMethod('bind_param');

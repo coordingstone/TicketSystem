@@ -157,6 +157,21 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-2">
+                        <label>Attachment</label>
+                    </div>
+                    <div class="col-md-4">
+                        <% if(ticket.ticketAttachmentUrl !== null && ticket.ticketAttachmentFileName !== null) { %>
+                            <a href="<%= ticket.ticketAttachmentUrl %>"><%= ticket.ticketAttachmentFileName %></a>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input id="attachemnt-file" class="attachment-input" type="file" />
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-2 text-left">
                         <a href="#" class="btn-cancel">Cancel</a>
                     </div>

@@ -14,9 +14,30 @@ export default BaseView.extend({
     },
 
     events: {
-        'click .btn-save': 'saveChanges',
+        'click .btn-save': 'getBase64',
         'click .btn-delete': 'deleteTicket',
         'click .btn-cancel': 'cancelEdit',
+    },
+
+    getBase64: function() {
+        var self = this;
+        let numberOfAttachemnts = document.getElementById("attachemnt-file").files.length;
+        if (numberOfAttachemnts > 0) {
+            let file = document.getElementById("attachemnt-file").files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                let result = reader.result;
+                self.saveChanges(result);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+                self.saveChanges();
+            };
+        } else {
+            self.saveChanges();
+        }
+
     },
 
     cancelEdit: function (e) {
@@ -55,10 +76,35 @@ export default BaseView.extend({
         });
     },
 
-    saveChanges: function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    saveChanges: function (results) {
+
         let self = this;
+
+
+        // file content
+        var fileAsBase64 = results;
+        var filename = $('input[type=file]').val().replace(/.*(\/|\\)/, '');
+        console.log(fileAsBase64);
+        if (fileAsBase64 != null) {
+            let data = {
+                attachment: fileAsBase64,
+                fileName: filename
+            }
+            $.ajax({
+                url: 'rest/ticket/' + this.model.get('ticketId') + '/attachment',
+                type: 'put',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                success: function () {
+
+                },
+                error: function () {
+
+                }
+
+            });
+        }
+
         let openerName = self.$el.find('input[name="openerNameInput"]').val();
         let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
         let closerName = self.$el.find('input[name="closerNameInput"]').val();

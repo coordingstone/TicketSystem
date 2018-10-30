@@ -29,6 +29,7 @@ class TicketResource extends BaseResource
     public function put($ticketId) {
         $ticket = \Ticket::load($ticketId);
         $pObj = Model\Request\TicketsRequest::createInstance($this);
+        $attachment = \TicketAttachment::loadByTicketId($ticketId);
 
         $ticket->openerName = $pObj->openerName;
         $ticket->issueDescription = $pObj->issueDescription;
@@ -56,7 +57,7 @@ class TicketResource extends BaseResource
         }
 
         $ticket = \Ticket::load($ticketId);
-        $model = Model\Response\TicketModel::createModel($ticket);
+        $model = Model\Response\TicketModel::createModel($ticket, $attachment);
         return $this->generateResponse($model);
     }
 

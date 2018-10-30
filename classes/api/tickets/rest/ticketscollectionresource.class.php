@@ -25,7 +25,17 @@ class TicketsCollectionResource extends BaseResource
 
         $models = array();
         foreach ($tickets as $ticket) {
-            $models[] = Model\Response\TicketModel::createModel($ticket);
+            $attachments = \TicketAttachment::loadByTicketId($ticket->ticketId);
+            if (!empty($attachments)) {
+                $attachment = $attachments[0];
+            }
+            if ($attachment) {
+                $models[] = Model\Response\TicketModel::createModel($ticket, $attachment);
+                $attachment = null;
+            } else {
+                $models[] = Model\Response\TicketModel::createModel($ticket);
+            }
+
         }
 
         return $this->generateResponse($models);

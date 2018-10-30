@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-10-28 10:45:47
+/* Smarty version 3.1.33, created on 2018-10-30 22:15:47
   from '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bd5935b792666_95273223',
+  'unifunc' => 'content_5bd8d813365d47_93931030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ca69ef822a2965e7277970bf9912de82871bb61d' => 
     array (
       0 => '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl',
-      1 => 1540723529,
+      1 => 1540937745,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bd5935b792666_95273223 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bd8d813365d47_93931030 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7176631915bd5935b77ac42_49448274', 'mainContent');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6140489955bd8d81334adc0_05110537', 'mainContent');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6262238615bd5935b77e450_28675132', 'afterBodyBlock');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1106247095bd8d81334e112_75625114', 'afterBodyBlock');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "frontend/tickets/maintemplate.tpl");
 }
 /* {block 'mainContent'} */
-class Block_7176631915bd5935b77ac42_49448274 extends Smarty_Internal_Block
+class Block_6140489955bd8d81334adc0_05110537 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'mainContent' => 
   array (
-    0 => 'Block_7176631915bd5935b77ac42_49448274',
+    0 => 'Block_6140489955bd8d81334adc0_05110537',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -91,12 +91,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'mainContent'} */
 /* {block 'afterBodyBlock'} */
-class Block_6262238615bd5935b77e450_28675132 extends Smarty_Internal_Block
+class Block_1106247095bd8d81334e112_75625114 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'afterBodyBlock' => 
   array (
-    0 => 'Block_6262238615bd5935b77e450_28675132',
+    0 => 'Block_1106247095bd8d81334e112_75625114',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -222,6 +222,21 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Attachment</label>
+                    </div>
+                    <div class="col-md-4">
+                        <?php echo '<%';?> if(ticket.ticketAttachmentUrl !== null && ticket.ticketAttachmentFileName !== null) { <?php echo '%>';?>
+                            <a href="<?php echo '<%';?>= ticket.ticketAttachmentUrl <?php echo '%>';?>"><?php echo '<%';?>= ticket.ticketAttachmentFileName <?php echo '%>';?></a>
+                        <?php echo '<%';?>}<?php echo '%>';?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input id="attachemnt-file" class="attachment-input" type="file" />
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-2 text-left">
                         <a href="#" class="btn-cancel">Cancel</a>
