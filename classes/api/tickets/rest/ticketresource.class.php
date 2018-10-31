@@ -57,7 +57,14 @@ class TicketResource extends BaseResource
         }
 
         $ticket = \Ticket::load($ticketId);
-        $model = Model\Response\TicketModel::createModel($ticket, $attachment);
+
+        if (!empty($attachment)) {
+            $model = Model\Response\TicketModel::createModel($ticket, $attachment[0]);
+        } else {
+            $model = Model\Response\TicketModel::createModel($ticket, null);
+        }
+
+
         return $this->generateResponse($model);
     }
 

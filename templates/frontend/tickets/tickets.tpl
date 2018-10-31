@@ -100,7 +100,10 @@
                             <label>Status</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" name="statusInput" class="form-control" value="<%= ticket.status %>">
+                            <select name="statusSelect" class="form-control">
+                                <option value="OPEN">OPEN</option>
+                                <option value="CLOSED">CLOSED</option>
+                            </select>
                         </div>
                     </div>
 
@@ -152,7 +155,10 @@
                         <label>Status</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="statusInput" class="form-control" value="<%= ticket.status %>">
+                        <select name="statusSelect" class="form-control">
+                            <option value="OPEN">OPEN</option>
+                            <option value="CLOSED">CLOSED</option>
+                        </select>
                     </div>
                 </div>
 

@@ -63,7 +63,6 @@ class TicketAttachment extends DbObject
     public function insert() {
         $query = "INSERT INTO ticket_attachment (ticket_id, file_name, extension, createtime) " .
             "VALUES (?, ?, ?, NOW())";
-        error_log($query);
         $typeString = 'iss';
         $values = array(
             $this->ticketId,
@@ -88,7 +87,7 @@ class TicketAttachment extends DbObject
     }
 
     public function getAttachmentDirectory() {
-        return "/Users/joelsvensson/Documents/development/TicketSystem/resources/attachments/" . $this->ticketId;
+        return dirname(__FILE__, 2) . '/resources/attachments/' . $this->ticketId;
     }
 
     public function getAttachmentPath(){
@@ -119,13 +118,11 @@ class TicketAttachment extends DbObject
         $newAttachment->extension = $extension;
         $newAttachment->insert();
 
-        error_log($newAttachment->ticketAttachmentId);
         $newAttachment->setFileName($newAttachment->fileName . "." . strtolower($extension));
 
         $attachmentDirectory = $newAttachment->getAttachmentDirectory();
 
         $fullAttachmentPath = $attachmentDirectory . '/' . $newAttachment->fileName;
-        error_log($fullAttachmentPath);
 
         if (!file_exists($attachmentDirectory) || !is_dir($attachmentDirectory)) {
             if (!@mkdir($attachmentDirectory)) {

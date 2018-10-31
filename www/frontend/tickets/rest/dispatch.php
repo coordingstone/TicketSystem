@@ -1,13 +1,7 @@
 <?php
-$dirName = dirname(__FILE__, 13);
-$test = '/classes/api/tickets/rest';
+$resourceDir = dirname(__FILE__, 5) . '/classes/api/tickets/rest/';
+require_once(dirname(__FILE__, 5) . '/vendor/autoload.php');
 
-$result = $dirName . $test;
-
-
-$resourceDir = '/Users/joelsvensson/Documents/development/TicketSystem/classes/api/tickets/rest/';
-require_once('/Users/joelsvensson/Documents/development/TicketSystem/vendor/autoload.php');
-require '/Users/joelsvensson/Documents/development/TicketSystem/classes/api/tickets/rest/baseresource.class.php';
 $load = array();
 
 if (is_dir($resourceDir)) {

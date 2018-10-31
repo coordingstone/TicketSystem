@@ -27,7 +27,7 @@ class TicketsRequest extends RequestModel
     public $closerName;
 
     /**
-     * @var string ENUM(OPEN, CLOSE)
+     * @var string ENUM(OPEN, CLOSED)
      */
     public $status;
 

@@ -108,12 +108,13 @@ export default BaseView.extend({
         let openerName = self.$el.find('input[name="openerNameInput"]').val();
         let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
         let closerName = self.$el.find('input[name="closerNameInput"]').val();
-        let status = self.$el.find('input[name="statusInput"]').val();
+        let status = self.$el.find('select[name="statusSelect"]').val();
+        console.log(status);
 
         this.model.set('openerName', openerName);
         this.model.set('issueDescription', issueDescription);
         this.model.set('closerName', closerName);
-        this.model.set('status', 'OPEN');
+        this.model.set('status', status);
 
         this.model.save(null, {
             success: function () {

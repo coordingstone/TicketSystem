@@ -27,7 +27,7 @@ class TicketModel extends ResponseModel
         $model->openerName = $pObj->openerName;
         $model->issueDescription = $pObj->issueDescription;
         $model->closerName = $pObj->closerName;
-        if ($attachment) {
+        if ($attachment != null) {
             $model->ticketAttachmentUrl = "/tickets/rest/ticket/" . $model->ticketId . "/attachment";
             $model->ticketAttachmentFileName = $attachment->fileName;
         }

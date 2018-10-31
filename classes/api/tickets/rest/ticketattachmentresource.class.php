@@ -51,7 +51,6 @@ class TicketAttachmentResource extends BaseResource
         $fileName = $path_info['filename'];
         $extension = $path_info['extension'];
         $ticketAttachments = TicketAttachment::loadByTicketId($ticketId);
-        error_log(count($ticketAttachments));
 
 
         if (!empty($ticketAttachments)) {

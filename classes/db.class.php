@@ -6,16 +6,22 @@ class Db extends MySQLi
 
     private function __construct()
     {
-        $port = 3306;
+        $conf = Config::getInstance();
+        $host = $conf->Database['host'];
+        $username = $conf->Database['username'];
+        $password = $conf->Database['password'];
+        $name = $conf->Database['name'];
+        $port = $conf->Database['port'];
+        $encoding = $conf->Database['encoding'];
 
-        parent::__construct('127.0.0.1', 'root', 'root', 'ticketsystem', $port);
+        parent::__construct($host, $username, $password, $name, $port);
 
         if ($this->connect_error) {
             throw new DbException("Connect error ({$this->connect_error}) {$this->connect_error}");
 
         }
 
-        $this->set_charset('utf8');
+        $this->set_charset($encoding);
     }
 
     public static function getInstance() {
