@@ -21,12 +21,32 @@ export default BaseView.extend({
     },
 
     events: {
-        'click .btn-save': 'saveChanges'
+        'click .btn-save': 'getBase64'
     },
 
-    saveChanges: function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    getBase64: function() {
+        var self = this;
+        let numberOfAttachemnts = document.getElementById("attachemnt-file").files.length;
+        if (numberOfAttachemnts > 0) {
+            let file = document.getElementById("attachemnt-file").files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                let result = reader.result;
+                self.saveChanges(result);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+                self.saveChanges();
+            };
+        } else {
+            self.saveChanges();
+        }
+
+    },
+
+    saveChanges: function (results) {
+
         let self = this;
         let openerName = self.$el.find('input[name="openerNameInput"]').val();
         let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
@@ -37,6 +57,16 @@ export default BaseView.extend({
         this.ticketModel.set('issueDescription', issueDescription);
         this.ticketModel.set('closerName', closerName);
         this.ticketModel.set('status', 'OPEN');
+        var fileAsBase64 = results;
+        var filename = $('input[type=file]').val().replace(/.*(\/|\\)/, '');
+        if (fileAsBase64 != null) {
+            let data = {
+                attachment: fileAsBase64,
+                fileName: filename
+            }
+            self.ticketModel.set('ticketAttachmentRequest', data);
+        }
+        console.log(self.ticketModel);
 
 
         this.ticketsCollection.add(this.ticketModel);

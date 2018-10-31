@@ -108,6 +108,12 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-md-4">
+                            <input id="attachemnt-file" class="attachment-input" type="file" />
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-6 col-md-offset-4 text-right">
                             <a href="#new-ticket" class="btn-save pull-right">Save</a>
                         </div>
@@ -191,10 +197,7 @@
         </tr>
     </script>
 
-    <script type="text/javascript" src="js/vendor.js"></script>
-    <script type="text/javascript" src="js/vendors.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/runtime.js"></script>
     <script type="text/javascript" src="js/tickets.js"></script>
 
 

@@ -7,6 +7,8 @@
  */
 
 namespace Api\Tickets\Rest;
+use Api\Tickets\Rest\Model\Request\TicketAttachmentRequest;
+use TicketAttachment;
 use Tonic\Exception;
 use Tonic\Response as TonicResponse;
 use Tonic\Exception as TonicException;
@@ -29,7 +31,7 @@ class TicketResource extends BaseResource
     public function put($ticketId) {
         $ticket = \Ticket::load($ticketId);
         $pObj = Model\Request\TicketsRequest::createInstance($this);
-        $attachment = \TicketAttachment::loadByTicketId($ticketId);
+        $ticketAttachmentRequest = $pObj->ticketAttachmentRequest;
 
         $ticket->openerName = $pObj->openerName;
         $ticket->issueDescription = $pObj->issueDescription;
@@ -57,9 +59,12 @@ class TicketResource extends BaseResource
         }
 
         $ticket = \Ticket::load($ticketId);
+        $this->setAttachment($ticket, $ticketAttachmentRequest);
+        $attachment = \TicketAttachment::loadByTicketId($ticket->ticketId);
 
         if (!empty($attachment)) {
             $model = Model\Response\TicketModel::createModel($ticket, $attachment[0]);
+            error_log("loaded attachment '$model->ticketAttachmentFileName'");
         } else {
             $model = Model\Response\TicketModel::createModel($ticket, null);
         }
@@ -76,12 +81,51 @@ class TicketResource extends BaseResource
      */
     public function delete($ticketId) {
         $ticket = \Ticket::load($ticketId);
+        $ticketAttachment =TicketAttachment::loadByTicketId($ticketId);
         if ($ticket->delete()) {
+            if (!empty($ticketAttachment)) {
+                $ticketAttachment[0]->delete();
+            }
             return $this->generateEmptyResponse();
         } else {
             throw new Exception('Server error', TonicResponse::INTERNALSERVERERROR);
         }
 
+
+    }
+
+    /**
+     * @param \Ticket $ticket
+     * @param TicketAttachmentRequest $ticketAttachmentRequest
+     * @throws TonicException
+     */
+    public function setAttachment($ticket, $ticketAttachmentRequest) {
+
+        $ticket = $ticket;
+        $rObj = $ticketAttachmentRequest;
+
+        $attachmentAsBase64 = $rObj->attachment;
+        $fileName = $rObj->fileName;
+        $path_info = pathinfo($fileName);
+        $fileName = $path_info['filename'];
+        $extension = $path_info['extension'];
+        $ticketAttachments = TicketAttachment::loadByTicketId($ticket->ticketId);
+
+
+        if (!empty($ticketAttachments)) {
+            $oldAttachment = $ticketAttachments[0];
+            try {
+                $oldAttachment->updateAttachment($extension, $fileName, $attachmentAsBase64);
+                return;
+            } catch (\Exception $exception) {
+                throw new Exception('Server error, could not delete old attachment', Response::INTERNALSERVERERROR);
+            }
+        }
+        try {
+            \TicketAttachment::createAttachment($ticket->ticketId, $fileName, 'txt', $attachmentAsBase64);
+        } catch (\Exception $exception) {
+            throw new Exception('Server error, could not create new attachment', Response::INTERNALSERVERERROR);
+        }
 
     }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-10-30 22:46:02
+/* Smarty version 3.1.33, created on 2018-10-31 22:09:43
   from '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5bd8df2aa41ef0_17653838',
+  'unifunc' => 'content_5bda2827920309_92217272',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ca69ef822a2965e7277970bf9912de82871bb61d' => 
     array (
       0 => '/Users/joelsvensson/Documents/development/TicketSystem/templates/frontend/tickets/tickets.tpl',
-      1 => 1540939510,
+      1 => 1541023782,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5bd8df2aa41ef0_17653838 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bda2827920309_92217272 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9162818365bd8df2aa28c43_29053365', 'mainContent');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8350222535bda28279074b3_09801513', 'mainContent');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6125159815bd8df2aa2c1f5_80049906', 'afterBodyBlock');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8500703375bda282790a403_80246796', 'afterBodyBlock');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "frontend/tickets/maintemplate.tpl");
 }
 /* {block 'mainContent'} */
-class Block_9162818365bd8df2aa28c43_29053365 extends Smarty_Internal_Block
+class Block_8350222535bda28279074b3_09801513 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'mainContent' => 
   array (
-    0 => 'Block_9162818365bd8df2aa28c43_29053365',
+    0 => 'Block_8350222535bda28279074b3_09801513',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -91,12 +91,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'mainContent'} */
 /* {block 'afterBodyBlock'} */
-class Block_6125159815bd8df2aa2c1f5_80049906 extends Smarty_Internal_Block
+class Block_8500703375bda282790a403_80246796 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'afterBodyBlock' => 
   array (
-    0 => 'Block_6125159815bd8df2aa2c1f5_80049906',
+    0 => 'Block_8500703375bda282790a403_80246796',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -168,6 +168,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                                 <option value="OPEN">OPEN</option>
                                 <option value="CLOSED">CLOSED</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input id="attachemnt-file" class="attachment-input" type="file" />
                         </div>
                     </div>
 
@@ -259,16 +265,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 >
 
     <?php echo '<script'; ?>
- type="text/javascript" src="js/vendor.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="js/vendors.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
  type="text/javascript" src="js/common.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="js/runtime.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  type="text/javascript" src="js/tickets.js"><?php echo '</script'; ?>

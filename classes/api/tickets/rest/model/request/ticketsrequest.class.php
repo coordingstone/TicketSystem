@@ -31,4 +31,14 @@ class TicketsRequest extends RequestModel
      */
     public $status;
 
+    /**
+     * @var string
+     */
+    public $ticketAttachmentFileName;
+
+    /**
+     * @var TicketAttachmentRequest
+     */
+    public $ticketAttachmentRequest;
+
 }

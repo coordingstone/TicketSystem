@@ -3,6 +3,7 @@
 
 namespace Api\Tickets\Rest;
 
+use Api\Tickets\Rest\Model\Request\TicketAttachmentRequest;
 use Tonic\Exception;
 use Tonic\Response as TonicResponse;
 use Tonic\Exception as TonicException;
@@ -52,6 +53,8 @@ class TicketsCollectionResource extends BaseResource
         $ticket = new \Ticket();
 
         $pObj = Model\Request\TicketsRequest::createInstance($this);
+        $ticketAttachmentRequest = $pObj->ticketAttachmentRequest;
+
 
         $ticket->openerName = $pObj->openerName;
         $ticket->issueDescription = $pObj->issueDescription;
@@ -80,8 +83,40 @@ class TicketsCollectionResource extends BaseResource
         }
 
         $ticket = \Ticket::load($ticket->ticketId);
-        $model = Model\Response\TicketModel::createModel($ticket);
+        if ($ticketAttachmentRequest) {
+            $this->setAttachment($ticket, $ticketAttachmentRequest);
+            $attachment = \TicketAttachment::loadByTicketId($ticket->ticketId);
+        }
+        if (!empty($attachment)) {
+            $model = Model\Response\TicketModel::createModel($ticket, $attachment[0]);
+        } else {
+            $model = Model\Response\TicketModel::createModel($ticket);
+        }
+
 
         return $this->generateResponse($model);
+    }
+
+    /**
+     * @param \Ticket $ticket
+     * @param TicketAttachmentRequest $attachmentRequest
+     * @throws TonicException
+     */
+    public function setAttachment($ticket, $attachmentRequest) {
+
+        $rObj = $attachmentRequest;
+
+        $attachmentAsBase64 = $rObj->attachment;
+        $fileName = $rObj->fileName;
+        $path_info = pathinfo($fileName);
+        $fileName = $path_info['filename'];
+        $extension = $path_info['extension'];
+
+
+        try {
+            \TicketAttachment::createAttachment($ticket->ticketId, $fileName, $extension, $attachmentAsBase64);
+        } catch (\Exception $exception) {
+            throw new Exception('Server error, could not create new attachment', Response::INTERNALSERVERERROR);
+        }
     }
 }

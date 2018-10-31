@@ -23,52 +23,18 @@ class TicketAttachmentResource extends BaseResource
     /**
      * @param $ticketId
      * @method GET
+     * @return Response
+     * @throws Exception
      */
     public function get($ticketId) {
         $attachments = TicketAttachment::loadByTicketId($ticketId);
-        if (!empty($attachments)){
+        if (empty($attachments)){
+            throw new Exception("Failed to get attachment", Response::INTERNALSERVERERROR);
+        } else {
             $attachment = $attachments[0];
         }
 
         $contents = file_get_contents($attachment->getAttachmentPath());
         return $this->generateCustomResponse('application/octet-stream', $contents, $attachment->fileName);
-    }
-
-    /**
-     * @param int $ticketId
-     * @method PUT
-     * @throws \Tonic\Exception
-     * @return Response
-     */
-    public function setAttachment($ticketId) {
-
-        $ticket = \Ticket::load($ticketId);
-        $rObj = Model\Request\TicketAttachmentRequest::createInstance($this);
-
-        $attachmentAsBase64 = $rObj->attachment;
-        $fileName = $rObj->fileName;
-        $path_info = pathinfo($fileName);
-        $fileName = $path_info['filename'];
-        $extension = $path_info['extension'];
-        $ticketAttachments = TicketAttachment::loadByTicketId($ticketId);
-
-
-        if (!empty($ticketAttachments)) {
-            $oldAttachment = $ticketAttachments[0];
-            try {
-                $oldAttachment->updateAttachment($extension, $fileName, $attachmentAsBase64);
-                return $this->generateEmptyResponse();
-            } catch (\Exception $exception) {
-                throw new Exception('Server error, could not delete old attachment', Response::INTERNALSERVERERROR);
-            }
-        }
-        try {
-            \TicketAttachment::createAttachment($ticket->ticketId, $fileName, 'txt', $attachmentAsBase64);
-        } catch (\Exception $exception) {
-            throw new Exception('Server error, could not create new attachment', Response::INTERNALSERVERERROR);
-        }
-
-        return $this->generateEmptyResponse();
-
     }
 }

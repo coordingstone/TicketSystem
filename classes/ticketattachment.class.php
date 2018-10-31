@@ -82,12 +82,17 @@ class TicketAttachment extends DbObject
     }
 
     public function delete(){
+        $this->deleteAttachmentPath();
         $query = "UPDATE ticket_attachment SET deletetime = NOW() WHERE ticket_attachment_id = ?";
         self::queryByParams($query, 'i', array($this->ticketAttachmentId));
     }
 
     public function getAttachmentDirectory() {
         return dirname(__FILE__, 2) . '/resources/attachments/' . $this->ticketId;
+    }
+
+    public function deleteAttachmentPath() {
+        rmdir($this->getAttachmentDirectory());
     }
 
     public function getAttachmentPath(){

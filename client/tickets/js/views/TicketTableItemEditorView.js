@@ -80,31 +80,6 @@ export default BaseView.extend({
 
         let self = this;
 
-
-        // file content
-        var fileAsBase64 = results;
-        var filename = $('input[type=file]').val().replace(/.*(\/|\\)/, '');
-        console.log(fileAsBase64);
-        if (fileAsBase64 != null) {
-            let data = {
-                attachment: fileAsBase64,
-                fileName: filename
-            }
-            $.ajax({
-                url: 'rest/ticket/' + this.model.get('ticketId') + '/attachment',
-                type: 'put',
-                dataType: 'json',
-                data: JSON.stringify(data),
-                success: function () {
-
-                },
-                error: function () {
-
-                }
-
-            });
-        }
-
         let openerName = self.$el.find('input[name="openerNameInput"]').val();
         let issueDescription = self.$el.find('input[name="issueDescriptionInput"]').val();
         let closerName = self.$el.find('input[name="closerNameInput"]').val();
@@ -115,6 +90,17 @@ export default BaseView.extend({
         this.model.set('issueDescription', issueDescription);
         this.model.set('closerName', closerName);
         this.model.set('status', status);
+        this.model.set('ticketAttachmentFileName', filename);
+        var fileAsBase64 = results;
+        var filename = $('input[type=file]').val().replace(/.*(\/|\\)/, '');
+        if (fileAsBase64 != null) {
+            let data = {
+                attachment: fileAsBase64,
+                fileName: filename
+            }
+            self.model.set('ticketAttachmentRequest', data);
+        }
+
 
         this.model.save(null, {
             success: function () {

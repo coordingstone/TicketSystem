@@ -32,19 +32,24 @@ $(document).ready(function () {
         listTickets: function () {
             $('#sidebar-menu').find('li').removeClass('active');
             $('#list-tickets-list-item').addClass('active');
+            self = this;
 
-            this.hideActiveView();
 
             if (typeof this.ticketsView == null || typeof this.ticketsView === 'undefined') {
-                console.log(this.ticketsView);
                 this.ticketsView = new TicketsView();
-                console.log(this.ticketsView);
             }
-            this.ticketsView.render();
-            this.ticketsView.$el.show();
-            this.activeView = this.ticketsView;
 
+            this.ticketsView.ticketsCollection.fetch({
+                success: function (model, response) {
+                    self.hideActiveView();
+                    self.ticketsView.render();
+                    self.ticketsView.$el.show();
+                    self.activeView = self.ticketsView;
+                },
+                error: function () {
 
+                }
+            });
         },
 
         hideActiveView: function() {
