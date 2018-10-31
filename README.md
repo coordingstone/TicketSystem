@@ -1,32 +1,65 @@
 # TicketSystem
 
 Local development environment:
+
 MAMP
 
+Port:80
+
+MySQL port: 3306
+
+Requirements:
+
+NPM
+
+Composer
+
+#1
 Setup virtual hosts MAMP -> https://www.taniarascia.com/setting-up-virtual-hosts/
 
 Configuration for vhost:
 
-#
-# VirtualHost example:
-# Document root and Directory points to your local path for this project
-#
-<VirtualHost *:80>
-    php_admin_flag expose_php off
-    ServerSignature Off
+VirtualHost example:
 
-    ServerName ticketsystem.local
+Document root and Directory points to your local path for this project
 
-    CustomLog /Applications/MAMP/logs/http-ticketsystem-local-access.log combined
-    ErrorLog /Applications/MAMP/logs/http-ticketsystem-local-error.log
-    LogLevel warn
-    ProxyRequests Off
+    <VirtualHost *:80>
+        php_admin_flag expose_php off
+        ServerSignature Off
 
-    DocumentRoot /"LOCAL_PATH_TO_PROJECT"/TicketSystem/www/frontend
-    <Directory /"LOCAL_PATH_TO_PROJECT"/TicketSystem/www/frontend>
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    </Directory>
+        ServerName ticketsystem.local
 
-</VirtualHost>
+        CustomLog /Applications/MAMP/logs/http-ticketsystem-local-access.log combined
+        ErrorLog /Applications/MAMP/logs/http-ticketsystem-local-error.log
+        LogLevel warn
+        ProxyRequests Off
+
+        DocumentRoot /"LOCAL_PATH_TO_PROJECT"/TicketSystem/www/frontend
+        <Directory /"LOCAL_PATH_TO_PROJECT"/TicketSystem/www/frontend>
+            AllowOverride All
+            Order allow,deny
+            allow from all
+        </Directory>
+
+    </VirtualHost>
+    
+
+#2
+Create a database named 'ticketsystem' 
+username: 'root' with password: 'root' should have full access to it.
+
+#3
+run npm install to install node_modules
+
+#4 
+run composer install to add vendor frameworks
+
+#5
+Open terminal and navigate to root folder of project (TicketSystem) -> run ./vendor/bin/doctrine-migrations migrations:migrate
+
+Execute migrations by confirming ('y')
+
+#6 
+
+Open browser and navigate to http://localhost/tickets/#tickets
+
