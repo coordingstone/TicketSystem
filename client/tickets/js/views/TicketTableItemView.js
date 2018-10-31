@@ -44,8 +44,6 @@ export default BaseView.extend({
 
         let bgColor = $(selectedTicketRow).css('background-color');
 
-        console.log('THIS IS CALLED');
-
         this.ticketEditorView = new TicketTableItemEditorView({model: model, itemView: itemView});
 
         var self = this;
@@ -62,18 +60,7 @@ export default BaseView.extend({
             $($tr).css('background-color', bgColor);
             $($tr).find('td').css('border-top', 'none');
             $(selectedTicketRow).after($tr).next().fadeIn();
-            console.log("this happens after");
-            // expected output: "Success!"
         });
-
-        /*
-        this.ticketEditorView.render().then(function (ticketEditorView) {
-            let $tr = ticketEditorView.$el;
-            $($tr).css('background-color', bgColor);
-            $($tr).find('td').css('border-top', 'none');
-            $(selectedTicketRow).after($tr).next().fadeIn();
-        });
-        */
     },
 
     render: function () {

@@ -36,7 +36,6 @@ export default BaseView.extend({
                 self.saveChanges(result);
             };
             reader.onerror = function (error) {
-                console.log('Error: ', error);
                 self.saveChanges();
             };
         } else {

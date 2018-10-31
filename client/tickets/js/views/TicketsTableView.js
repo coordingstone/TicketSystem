@@ -69,7 +69,6 @@ export default BaseView.extend({
             complete: function () {
                 self.$el.find('tbody').empty();
                 var isEven = false;
-                console.log(self.collection);
                 if (self.collection.size() === 0) {
                     var emptyRowTemplate = $('#tickets-table-empty-row').html();
                     console.log(emptyRowTemplate);
@@ -79,8 +78,6 @@ export default BaseView.extend({
                 }
 
                 self.collection.each(function (ticket) {
-                    console.log('TICKET ADDED');
-                    console.log(ticket);
                     var itemView = new TicketTableItemView({model: ticket});
                     var $tr = itemView.render().$el;
                     if (isEven) $($tr).addClass('even');

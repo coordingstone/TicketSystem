@@ -19,6 +19,8 @@ Setup virtual hosts MAMP -> https://www.taniarascia.com/setting-up-virtual-hosts
 
 Configuration for vhost:
 
+Local domain name: 127.0.0.1 ticketsystem.local
+
 VirtualHost example:
 
 Document root and Directory points to your local path for this project
@@ -46,7 +48,10 @@ Document root and Directory points to your local path for this project
 
 #2
 Create a database named 'ticketsystem' 
-username: 'root' with password: 'root' should have full access to it.
+
+Grant all privileges to username 'root' password 'root' on host '127.0.0.1'
+
+Could be updated from config.ini.
 
 #3
 run npm install to install node_modules
@@ -60,6 +65,5 @@ Open terminal and navigate to root folder of project (TicketSystem) -> run ./ven
 Execute migrations by confirming ('y')
 
 #6 
-
 Open browser and navigate to http://localhost/tickets/#tickets
 
