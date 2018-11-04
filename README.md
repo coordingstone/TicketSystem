@@ -47,7 +47,7 @@ Document root and Directory points to your local path for this project
     
 
 #2
-Create a database named 'ticketsystem' 
+Create a database named 'ticketsystem' with utf8_general_ci collation
 
 Grant all privileges to username 'root' password 'root' on host '127.0.0.1'
 
